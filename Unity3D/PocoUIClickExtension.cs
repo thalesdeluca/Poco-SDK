@@ -113,8 +113,8 @@ public class PocoUIClickExtension : PocoListenersBase
         if (EventSystem.current == null) return Err("no EventSystem in scene");
 
         var data = NewPointerData(go);
-        var handler = enter ? ExecuteEvents.pointerEnterHandler : ExecuteEvents.pointerExitHandler;
-        ExecuteEvents.Execute(go, data, handler);
+        if (enter) ExecuteEvents.Execute(go, data, ExecuteEvents.pointerEnterHandler);
+        else ExecuteEvents.Execute(go, data, ExecuteEvents.pointerExitHandler);
         return Ok(go);
     }
 
